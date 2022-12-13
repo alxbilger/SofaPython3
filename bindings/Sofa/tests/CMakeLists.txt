@@ -20,6 +20,7 @@ set(PYTHON_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Mass.py
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/DataEngine.py
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/MyRestShapeForceField.py
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/SingleStateAccessor.py
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/BaseLink.py
     ${CMAKE_CURRENT_SOURCE_DIR}/Helper/Message.py
     ${CMAKE_CURRENT_SOURCE_DIR}/Types/RGBAColor.py

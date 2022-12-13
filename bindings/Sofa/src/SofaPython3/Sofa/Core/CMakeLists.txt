@@ -39,6 +39,7 @@ set(HEADER_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/Data/Binding_DataVectorString.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Data/Binding_DataVectorString_doc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_PythonScriptEvent.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Binding_SingleStateAccessor.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_BaseLink.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_BaseLink_doc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_BaseData_doc.h
@@ -72,6 +73,7 @@ set(SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_Prefab.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Submodule_Core.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_PythonScriptEvent.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Binding_SingleStateAccessor.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_BaseLink.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_Topology.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_BaseMeshTopology.cpp

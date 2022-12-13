@@ -183,7 +183,11 @@ namespace sofapython3
     template<class TDOFType>
     void declare_forcefield(py::module &m) {
         const std::string pyclass_name = std::string("ForceField") + TDOFType::Name();
-        py::class_<ForceField<TDOFType>, BaseObject, ForceField_Trampoline<TDOFType>, py_shared_ptr<ForceField<TDOFType>>> f(m, pyclass_name.c_str(), py::dynamic_attr(), py::multiple_inheritance(), sofapython3::doc::forceField::forceFieldClass);
+        py::class_<ForceField<TDOFType>,
+                sofa::core::behavior::SingleStateAccessor<TDOFType>,
+                ForceField_Trampoline<TDOFType>,
+                py_shared_ptr<ForceField<TDOFType>>
+        > f(m, pyclass_name.c_str(), py::dynamic_attr(), py::multiple_inheritance(), sofapython3::doc::forceField::forceFieldClass);
 
         f.def(py::init([](py::args &args, py::kwargs &kwargs) {
             auto ff = sofa::core::sptr<ForceField_Trampoline<TDOFType>> (new ForceField_Trampoline<TDOFType>());
@@ -230,6 +234,10 @@ namespace sofapython3
                 mparams.setKFactor(1.).setMFactor(0.).setBFactor(0.);
 
                 self.addKToMatrix(&mparams, &accessor);
+            }
+            else
+            {
+                msg_error(&self) << "Force field " << self.getPathName() << " is not associated to any mechanical state";
             }
             matrix.compress();
 
