@@ -3,10 +3,13 @@
 set(HEADER_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_ConstraintSolver.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_ConstraintSolver_doc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Binding_GenericConstraintSolver.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Binding_GenericConstraintSolver_doc.h
 )
 
 set(SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_ConstraintSolver.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Binding_GenericConstraintSolver.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Module_SofaConstraintSolver.cpp
 )
 

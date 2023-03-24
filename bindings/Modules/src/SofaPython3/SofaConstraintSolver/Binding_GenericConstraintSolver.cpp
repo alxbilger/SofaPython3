@@ -1,4 +1,4 @@
-﻿/******************************************************************************
+/******************************************************************************
 *                              SofaPython3 plugin                             *
 *                  (c) 2021 CNRS, University of Lille, INRIA                  *
 *                                                                             *
@@ -17,19 +17,23 @@
 *******************************************************************************
 * Contact information: contact@sofa-framework.org                             *
 ******************************************************************************/
-
 #include <pybind11/pybind11.h>
-#include <SofaPython3/SofaConstraintSolver/Binding_ConstraintSolver.h>
+#include <SofaPython3/Sofa/Core/Binding_Base.h>
+#include <SofaPython3/Sofa/Core/Binding_ForceField_doc.h>
 #include <SofaPython3/SofaConstraintSolver/Binding_GenericConstraintSolver.h>
+#include <SofaPython3/SofaConstraintSolver/Binding_GenericConstraintSolver_doc.h>
 
+namespace py { using namespace pybind11; }
 namespace sofapython3
 {
-
-PYBIND11_MODULE(SofaConstraintSolver, m)
+void moduleAddGenericConstraintSolver(pybind11::module &m)
 {
-    moduleAddConstraintSolver(m);
-    moduleAddGenericConstraintSolver(m);
+    const std::string pyclass_name = sofa::component::constraint::lagrangian::solver::GenericConstraintSolver::GetClass()->className;
+    py::class_<sofa::component::constraint::lagrangian::solver::GenericConstraintSolver,
+               sofa::core::objectmodel::BaseObject,
+               GenericConstraintSolver_trampoline,
+               py_shared_ptr<sofa::component::constraint::lagrangian::solver::GenericConstraintSolver>> f
+    (m, pyclass_name.c_str(), py::dynamic_attr(), py::multiple_inheritance(), sofapython3::doc::constraintsolver::genericConstraintSolverClass);
+
 }
-
-}  // namespace sofapython3
-
+}

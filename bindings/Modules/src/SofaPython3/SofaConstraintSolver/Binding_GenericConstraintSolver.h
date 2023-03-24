@@ -1,4 +1,4 @@
-﻿/******************************************************************************
+/******************************************************************************
 *                              SofaPython3 plugin                             *
 *                  (c) 2021 CNRS, University of Lille, INRIA                  *
 *                                                                             *
@@ -17,19 +17,20 @@
 *******************************************************************************
 * Contact information: contact@sofa-framework.org                             *
 ******************************************************************************/
-
-#include <pybind11/pybind11.h>
-#include <SofaPython3/SofaConstraintSolver/Binding_ConstraintSolver.h>
-#include <SofaPython3/SofaConstraintSolver/Binding_GenericConstraintSolver.h>
+#pragma once
+#include <sofa/component/constraint/lagrangian/solver/GenericConstraintSolver.h>
 
 namespace sofapython3
 {
 
-PYBIND11_MODULE(SofaConstraintSolver, m)
+
+class GenericConstraintSolver_trampoline : public sofa::component::constraint::lagrangian::solver::GenericConstraintSolver
 {
-    moduleAddConstraintSolver(m);
-    moduleAddGenericConstraintSolver(m);
+public:
+    SOFA_CLASS(GenericConstraintSolver_trampoline, sofa::component::constraint::lagrangian::solver::GenericConstraintSolver);
+
+};
+
+
+void moduleAddGenericConstraintSolver(pybind11::module &m);
 }
-
-}  // namespace sofapython3
-

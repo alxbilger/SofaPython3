@@ -1,4 +1,4 @@
-﻿/******************************************************************************
+/******************************************************************************
 *                              SofaPython3 plugin                             *
 *                  (c) 2021 CNRS, University of Lille, INRIA                  *
 *                                                                             *
@@ -18,18 +18,10 @@
 * Contact information: contact@sofa-framework.org                             *
 ******************************************************************************/
 
-#include <pybind11/pybind11.h>
-#include <SofaPython3/SofaConstraintSolver/Binding_ConstraintSolver.h>
-#include <SofaPython3/SofaConstraintSolver/Binding_GenericConstraintSolver.h>
+#pragma once
 
-namespace sofapython3
+namespace sofapython3::doc::constraintsolver
 {
-
-PYBIND11_MODULE(SofaConstraintSolver, m)
-{
-    moduleAddConstraintSolver(m);
-    moduleAddGenericConstraintSolver(m);
+static auto genericConstraintSolverClass = R"(
+)";
 }
-
-}  // namespace sofapython3
-
