@@ -21,8 +21,10 @@
 #include <pybind11/stl.h>
 
 #include <SofaPython3/SofaGui/Binding_GUIManager.h>
-#include <sofa/gui/common/GUIManager.h>
 #include <sofa/gui/common/BaseGUI.h>
+#include <sofa/gui/common/GUIManager.h>
+#include <sofa/helper/Utils.h>
+#include <sofa/helper/system/FileSystem.h>
 #include <sofa/simulation/Node.h>
 
 /// Makes an alias for the pybind11 namespace to increase readability.
@@ -184,6 +186,14 @@ void moduleAddGuiManager(py::module& m)
         Get the current GUI.
     )doc";
     guiManager.def_static("GetGUI", &sofa::gui::common::GUIManager::getGUI, GetGUIDoc);
+
+    sofa::gui::common::BaseGUI::setConfigDirectoryPath(
+        sofa::helper::system::FileSystem::append(
+            sofa::helper::Utils::getSofaUserLocalDirectory(), "config"), true);
+
+    sofa::gui::common::BaseGUI::setScreenshotDirectoryPath(
+        sofa::helper::system::FileSystem::append(
+            sofa::helper::Utils::getSofaDataDirectory(), "screenshots"), true);
 }
 
 } /// namespace sofapython3
