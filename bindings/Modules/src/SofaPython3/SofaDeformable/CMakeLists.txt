@@ -1,16 +1,21 @@
 project(Bindings.Modules.SofaDeformable)
 
 set(SOURCE_FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/Module_SofaDeformable.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Binding_JaxFEMForceField.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_LinearSpring.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_SpringForceField.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/JaxFEMForceField.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Module_SofaDeformable.cpp
 )
 
 set(HEADER_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/Binding_JaxFEMForceField.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_LinearSpring.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_LinearSpring_doc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_SpringForceField.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Binding_SpringForceField_doc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/JaxFEMForceField.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/JaxFEMForceField.inl
 )
 
 if (NOT TARGET SofaPython3::Plugin)
