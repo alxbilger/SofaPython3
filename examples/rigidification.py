@@ -75,11 +75,10 @@ deformable DoFs plus the 6 DoFs of the rigid body (instead of 3 DoFs for
 every single node in the rigidified region). The FEM stiffness/mass matrices
 are computed on the full mesh in "beam/physics", then PROJECTED down onto
 this reduced system through the chain of mappings (SubsetMultiMapping, then
-RigidMapping). If you inspect the assembled system matrix of "rigidified_beam"
-(e.g. via "GlobalSystemMatrixImage"/SofaMatrix) and compare it to
-"deformable_beam"'s, you will see it is smaller, and that it contains
-non-zero coupling terms between the deformable DoFs and the rigid body's 6
-DoFs -- this coupling is exactly the trace, in the reduced linear system, of
+RigidMapping). If you inspect the assembled system matrix of "rigidified_beam" 
+and compare it to"deformable_beam"'s, you will see it is smaller, and that it 
+contains non-zero coupling terms between the deformable DoFs and the rigid body's 
+6 DoFs -- this coupling is exactly the trace, in the reduced linear system, of
 the FEM forces that were projected through the mappings.
 
 --- What will you actually see if you run this scene? ---
@@ -289,12 +288,6 @@ def create_beam_simulation(root_node, node_name, is_rigidified):
     with root_node.addChild(node_name) as simulation:
         simulation.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness=0.1, rayleighMass=0.1)
         simulation.addObject('SparseLDLSolver', template="CompressedRowSparseMatrix")
-        # Lets you visualize the assembled system matrix. For the rigidified
-        # beam, its size is reduced compared to the fully flexible beam
-        # (deformable DoFs + 6 rigid DoFs only), and you can spot the
-        # coupling terms between the deformable part and the rigid body --
-        # see "Why bother going through this indirection at all?" above.
-        simulation.addObject('GlobalSystemMatrixImage')
 
         with simulation.addChild("beam") as beam:
             # Define the full computational domain: a regular 3D grid of nodes.
@@ -349,9 +342,7 @@ def createScene(root_node):
             Sofa.Component.SolidMechanics.FEM.Elastic
             Sofa.Component.StateContainer
             Sofa.Component.Topology.Container.Grid
-            Sofa.Component.Visual
-            SofaMatrix
-            SofaMatrix.imgui""")
+            Sofa.Component.Visual""")
 
     root_node.addObject('DefaultAnimationLoop', parallelODESolving=True)
     root_node.addObject('VisualGrid')
