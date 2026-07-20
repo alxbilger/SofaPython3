@@ -31,8 +31,8 @@ def createScene(root_node):
     root_node.addObject('EulerImplicitSolver', name="backwardEuler", rayleighStiffness=0.1, rayleighMass=0.1)
     root_node.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixMat3x3d")
     root_node.addObject('RegularGridTopology', name="grid", min=[-5, -5, 0], max=[5, 5, 40], n=[5, 5, 20])
-    root_node.addObject('MechanicalObject', template="Vec3", name="state", showObject="true")
-    root_node.addObject('NodalMassDensity', property=scene_unit(2329.6, kg/m**3))
+    root_node.addObject('MechanicalObject', template="Vec3", name="state")
+    root_node.addObject('NodalMassDensity', property=scene_unit(1150, kg/m**3))
     root_node.addObject('FEMMass', template="Vec3,Hexahedron", topology="@grid")
 
     with root_node.addChild('tetra') as tetra:
@@ -42,7 +42,7 @@ def createScene(root_node):
         tetra.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
         tetra.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
 
-        young_modulus = scene_unit(1, MPa)
+        young_modulus = scene_unit(0.5, MPa)
         poisson_ratio = 0.45
         lame_parameters = Sofa.SofaDeformable.toLameParameters3D(young_modulus, poisson_ratio)
         tetra.addObject('TetrahedronHyperelasticityFEMForceField', name="FEM", topology="@Tetra_topo",
@@ -59,7 +59,7 @@ def createScene(root_node):
         visu.addObject('OglModel', name="Visual", color="red")
         visu.addObject('IdentityMapping', input="@../../../state", output="@Visual")
 
-    root_node.addObject('BoxROI', template="Vec3", name="box_roi", box=[-6, -6, -1, 6, 6, 0.1], drawBoxes="1")
+    root_node.addObject('BoxROI', template="Vec3", name="box_roi", box=[-6, -6, -1, 6, 6, 0.1])
     root_node.addObject('FixedProjectiveConstraint', template="Vec3", indices="@box_roi.indices")
 
 
